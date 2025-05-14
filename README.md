@@ -26,7 +26,7 @@ This repository contains a collection of Java projects organized by difficulty: 
 ## 🚀 How to Use
 
 ```bash
-git clone https://github.com/your-username/java-projects.git
+git clone https://github.com/RicardoMartins07/java-projects.git
 cd java-projects/beginner
 ```
 
