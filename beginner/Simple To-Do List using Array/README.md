@@ -16,6 +16,7 @@ Each task has a description, priority level, and category. You can edit, complet
 - 🗑️ Delete tasks by ID
 - ✏️ Edit existing tasks
 - 🔐 Robust input validation and clean CLI interaction
+- 🔍 Filter tasks by **Category** or **Priority**
 
 ---
 

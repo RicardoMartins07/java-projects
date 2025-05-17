@@ -27,6 +27,7 @@ public class Main {
             System.out.println("3 - Check a task as completed");
             System.out.println("4 - Delete a task");
             System.out.println("5 - Edit a task");
+            System.out.println("6 - Filter By Category / Priority");
             System.out.println("0 - Quit");
 
             if (scanner.hasNextInt()){
@@ -34,7 +35,7 @@ public class Main {
                 if (option == 0) {
                     System.out.println("Exiting... 👋");
                     return;
-                } else if (option >= 1 && option <= 5) {
+                } else if (option >= 1 && option <= 6) {
                     isValid = true;
                 } else {
                     System.out.println("Choose a valid option between 1 and 5");
@@ -78,6 +79,11 @@ public class Main {
                 EditTask(tasks,scanner);
                 showMenu(scanner,tasks);
                 break;
+            case 6:
+                FilterByCategoryOrPriority(tasks,scanner);
+                showMenu(scanner,tasks);
+                break;
+
         }
 
 
@@ -295,4 +301,111 @@ public class Main {
         }
     }
 
+    public static void FilterByCategoryOrPriority(ArrayList<Task> tasks, Scanner scanner) {
+
+        boolean isValid = false;
+        System.out.println("Please Choose the field you want to filter");
+
+        System.out.println("    1 - Priority\n    2 - Category\n ");
+
+        while (!isValid) {
+
+            if (scanner.hasNextInt()) {
+                int option = scanner.nextInt();
+
+                switch (option) {
+                    case 1:
+                        FilterByPriority(tasks,scanner);
+                        isValid = true;
+                        break;
+                    case 2:
+                        FilterByCategory(tasks,scanner);
+                        isValid = true;
+                        break;
+                    default:
+                        System.out.println("Please choose a valid option");
+                        break;
+                }
+
+
+            } else {
+                System.out.println("Please enter a valid number");
+                scanner.next();
+            }
+        }
+    }
+
+
+    public static void FilterByCategory(ArrayList<Task> tasks, Scanner scanner){
+
+        System.out.println("Choose the Category you want to filter:");
+
+        Category category = null;
+        while (category == null) {
+            System.out.println("Choose a Category:");
+            System.out.println("    1 - PERSONAL\n    2 - WORK\n    3 - STUDY\n    4 - SHOPPING\n    5 - OTHER");
+
+            if (scanner.hasNextInt()) {
+                int c = scanner.nextInt();
+                switch (c) {
+                    case 1 -> category = Category.PERSONAL;
+                    case 2 -> category = Category.WORK;
+                    case 3 -> category = Category.STUDY;
+                    case 4 -> category = Category.SHOPPING;
+                    case 5 -> category = Category.OTHER;
+                    default -> System.out.println("Please choose a valid option.");
+                }
+            } else {
+                System.out.println("Please enter a valid number.");
+                scanner.next();
+            }
+        }
+
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getCategory() == category) {
+                    System.out.println(task.toString());
+
+                }
+            }
+        }
+        else {
+            System.out.println("The List is empty or There are no items with that category");
+        }
+    }
+
+    public static void FilterByPriority(ArrayList<Task> tasks, Scanner scanner){
+
+        System.out.println("Choose the Priority you want to filter:");
+
+        Priorities priority = null;
+        while (priority == null) {
+            System.out.println("Choose a Priority:");
+            System.out.println("    1 - LOW\n    2 - MEDIUM\n    3 - HIGH");
+
+            if (scanner.hasNextInt()) {
+                int c = scanner.nextInt();
+                switch (c) {
+                    case 1 -> priority = Priorities.LOW;
+                    case 2 -> priority = Priorities.MEDIUM;
+                    case 3 -> priority = Priorities.HIGH;
+                    default -> System.out.println("Please choose a valid option.");
+                }
+            } else {
+                System.out.println("Please enter a valid number.");
+                scanner.next();
+            }
+        }
+
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getPriority() == priority) {
+                    System.out.println(task.toString());
+                }
+            }
+        }
+        else {
+            System.out.println("The List is empty or There are no items with that Priority");
+        }
+    }
 }
