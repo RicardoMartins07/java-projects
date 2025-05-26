@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Customer {
 
-    private  int id;
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private final int id;
     private String firstName;
     private  String lastName;
     private String email;
@@ -12,6 +14,7 @@ public class Customer {
     private String NIF;
 
     public Customer(String firstName, String lastName, String email, String phoneNumber, String NIF) {
+        this.id = count.incrementAndGet();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
