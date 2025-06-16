@@ -12,10 +12,10 @@ public class Main {
 
         /*
         *
-        *
-        * Editar nome
-        * Remover nota especifica
-        * Top 3 alunos
+        * Improvements:
+        * Edit name
+        * Remove specific Grade
+        * Top 3 Students
         *
         *
         * */
