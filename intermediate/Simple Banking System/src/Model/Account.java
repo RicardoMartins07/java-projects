@@ -1,8 +1,8 @@
+package Model;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Account {
@@ -13,7 +13,7 @@ public class Account {
     private  boolean isActive;
     private LocalDateTime createdAt;
     private String accountType;
-    private  Customer owner;
+    private Customer owner;
     private final List<Movements> movements;
 
     public List<Movements> getMovements() {
