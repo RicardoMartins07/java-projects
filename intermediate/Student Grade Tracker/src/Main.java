@@ -9,16 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
-        /*
-        *
-        * Improvements:
-        * Edit name
-        * Remove specific Grade
-        * Top 3 Students
-        *
-        *
-        * */
+        
 
         Scanner scanner = new Scanner(System.in);
 
@@ -50,7 +41,8 @@ public class Main {
             System.out.println("5 - Average grade of all students");
             System.out.println("6 - Delete Student");
             System.out.println("7 - Order Students by average grade");
-            System.out.println("8 - Export");
+            System.out.println("8 - Top 3 Students by average grade");
+            System.out.println("9 - Export");
             System.out.println("0 - Quit");
 
             if (scanner.hasNextInt()) {
@@ -59,7 +51,7 @@ public class Main {
                     studentService.doExport(students);
                     System.out.println("Exiting... 👋");
                     return;
-                } else if (option >= 1 && option <= 8) {
+                } else if (option >= 1 && option <= 9) {
                     isValid = true;
                 } else {
                     System.out.println("Choose a valid option between 0 and 6");
@@ -100,6 +92,10 @@ public class Main {
                 showMenu(scanner,students);
                 break;
             case 8:
+                studentService.topStudentsByAverage(students);
+                showMenu(scanner,students);
+                break;
+            case 9:
                 studentService.doExport(students);
                 showMenu(scanner,students);
                 break;

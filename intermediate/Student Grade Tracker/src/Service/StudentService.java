@@ -324,7 +324,6 @@ public class StudentService {
         }
 
         List<Student> sorted = new ArrayList<>(students);
-        sorted.sort(Comparator.comparing(Student::getFirstName));
 
         sorted.sort((s1, s2) -> Double.compare(
                 calculateAverage(s2),
@@ -337,5 +336,29 @@ public class StudentService {
         }
 
     }
+
+    public void topStudentsByAverage(List<Student> students) {
+
+        if (students.isEmpty()) {
+            System.out.println("There are no Students registered!");
+            return;
+        }
+
+        List<Student> sorted = new ArrayList<>(students);
+
+        sorted.sort((s1, s2) -> Double.compare(
+                calculateAverage(s2),
+                calculateAverage(s1)
+        ));
+
+        System.out.println("🏆 Top Students by Average Grade:");
+        int limit = Math.min(3, sorted.size());
+        for (int i = 0; i < limit; i++) {
+            Student s = sorted.get(i);
+            double avg = calculateAverage(s);
+            System.out.printf("%d. %s %s - Avg: %.2f%n", i + 1, s.getFirstName(), s.getLastName(), avg);
+        }
+    }
+
 }
 
