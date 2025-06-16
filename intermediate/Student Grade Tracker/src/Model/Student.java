@@ -33,7 +33,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Model.Student{" +
+        return "Student{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';

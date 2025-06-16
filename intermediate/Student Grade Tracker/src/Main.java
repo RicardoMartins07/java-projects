@@ -1,6 +1,7 @@
 import Model.Student;
 import Service.StudentService;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,8 +19,6 @@ public class Main {
         * Editar nome
         * Remover nota especifica
         * Ordenar alunos
-        * Importar
-        * Exportar
         * Top 3 alunos
         *
         *
@@ -27,7 +26,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        List<Student> students = new ArrayList<>();
+        StudentService studentService = new StudentService();
+
+        List<Student> students = studentService.doImport("Students.txt");
 
         showMenu(scanner,students);
 
@@ -45,13 +46,14 @@ public class Main {
 
 
         while (!isValid) {
-            System.out.println("============== Model.Student Grade Tracker ================");
-            System.out.println("1 - Enter a new Model.Student");
+            System.out.println("============== Student Grade Tracker ================");
+            System.out.println("1 - Enter a new Student");
             System.out.println("2 - List all Students");
             System.out.println("3 - Assign Grade");
             System.out.println("4 - Average grade of a student");
             System.out.println("5 - Average grade of all students");
-            System.out.println("6 - Delete Model.Student");
+            System.out.println("6 - Delete Student");
+            System.out.println("7 - Export");
             System.out.println("0 - Quit");
 
             if (scanner.hasNextInt()) {
@@ -59,7 +61,7 @@ public class Main {
                 if (option == 0) {
                     System.out.println("Exiting... 👋");
                     return;
-                } else if (option >= 1 && option <= 6) {
+                } else if (option >= 1 && option <= 7) {
                     isValid = true;
                 } else {
                     System.out.println("Choose a valid option between 0 and 6");
@@ -93,6 +95,10 @@ public class Main {
                 break;
             case 6:
                 studentService. deleteStudent(scanner,students);
+                showMenu(scanner,students);
+                break;
+            case 7:
+                studentService.doExport(students);
                 showMenu(scanner,students);
                 break;
         }
