@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -307,6 +308,34 @@ public class StudentService {
         }
 
         return students;
+    }
+
+    public double calculateAverage(Student student) {
+        List<Double> grades = student.getGrades();
+        if (grades.isEmpty()) return 0;
+        return grades.stream().mapToDouble(Double::doubleValue).average().orElse(0);
+    }
+
+    public void sortStudentsByAverageGrade(List<Student> students){
+
+        if (students.isEmpty()) {
+            System.out.println("There are no Students registered!");
+            return;
+        }
+
+        List<Student> sorted = new ArrayList<>(students);
+        sorted.sort(Comparator.comparing(Student::getFirstName));
+
+        sorted.sort((s1, s2) -> Double.compare(
+                calculateAverage(s2),
+                calculateAverage(s1)
+        ));
+
+        for (Student s : sorted) {
+            double avg = calculateAverage(s);
+            System.out.printf("%s %s - Avg: %.2f%n", s.getFirstName(), s.getLastName(), avg);
+        }
+
     }
 }
 

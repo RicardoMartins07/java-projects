@@ -11,14 +11,10 @@ public class Main {
 
 
         /*
-        * Funcionalidades
         *
-        *
-        * //Extras
         *
         * Editar nome
         * Remover nota especifica
-        * Ordenar alunos
         * Top 3 alunos
         *
         *
@@ -53,15 +49,17 @@ public class Main {
             System.out.println("4 - Average grade of a student");
             System.out.println("5 - Average grade of all students");
             System.out.println("6 - Delete Student");
-            System.out.println("7 - Export");
+            System.out.println("7 - Order Students by average grade");
+            System.out.println("8 - Export");
             System.out.println("0 - Quit");
 
             if (scanner.hasNextInt()) {
                 option = scanner.nextInt();
                 if (option == 0) {
+                    studentService.doExport(students);
                     System.out.println("Exiting... 👋");
                     return;
-                } else if (option >= 1 && option <= 7) {
+                } else if (option >= 1 && option <= 8) {
                     isValid = true;
                 } else {
                     System.out.println("Choose a valid option between 0 and 6");
@@ -98,6 +96,10 @@ public class Main {
                 showMenu(scanner,students);
                 break;
             case 7:
+                studentService.sortStudentsByAverageGrade(students);
+                showMenu(scanner,students);
+                break;
+            case 8:
                 studentService.doExport(students);
                 showMenu(scanner,students);
                 break;
