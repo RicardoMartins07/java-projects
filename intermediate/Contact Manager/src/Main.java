@@ -1,17 +1,29 @@
 import Model.Contact;
 import Service.ContactService;
+import Util.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    //IMPROVEMENTS TODO
+    /*
+    *
+    * EXPORT JSON
+    * FAVORITES CONTACTS
+    * EXPORT CSV
+    * HISTORY OF CRUD ACTIONS
+    * UNIT TESTS
+    * */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
+        FileUtils fileUtils = new FileUtils();
+        List<Contact> contacts = fileUtils.doImport("Contacts.txt");
 
-        List<Contact> contacts = new ArrayList<>();
 
         showMenu(scanner,contacts);
 
@@ -25,6 +37,7 @@ public class Main {
         boolean isValid = false;
 
         ContactService contactService = new ContactService();
+        FileUtils fileUtils = new FileUtils();
 
 
         while (!isValid) {
@@ -34,18 +47,20 @@ public class Main {
             System.out.println("3 - Search By Phone Number");
             System.out.println("4 - Edit Contact");
             System.out.println("5 - List All Contacts");
-            System.out.println("6 - Delete Contact");
+            System.out.println("6 - List All Contacts Ordered by name");
+            System.out.println("7 - Delete Contact");
             System.out.println("0 - Quit");
 
             if (scanner.hasNextInt()) {
                 option = scanner.nextInt();
                 if (option == 0) {
+                    fileUtils.doExport(contacts);
                     System.out.println("Exiting... 👋");
                     return;
-                } else if (option >= 1 && option <= 6) {
+                } else if (option >= 1 && option <= 7) {
                     isValid = true;
                 } else {
-                    System.out.println("Choose a valid option between 0 and 6");
+                    System.out.println("Choose a valid option between 0 and 7");
                 }
             } else {
                 System.out.println("Please enter a valid number");
@@ -67,7 +82,7 @@ public class Main {
                 showMenu(scanner,contacts);
                 break;
             case 4:
-                contactService.editContact();
+                contactService.editContact(scanner,contacts);
                 showMenu(scanner,contacts);
                 break;
             case 5:
@@ -75,6 +90,10 @@ public class Main {
                 showMenu(scanner,contacts);
                 break;
             case 6:
+                contactService.listAllContactsOrderedByName(contacts);
+                showMenu(scanner,contacts);
+                break;
+            case 7:
                 contactService.deleteContact(scanner,contacts);
                 showMenu(scanner,contacts);
                 break;
