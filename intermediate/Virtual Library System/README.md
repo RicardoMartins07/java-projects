@@ -1,107 +1,93 @@
-📚 Virtual Library System
+# 📚 Virtual Library System
 
-A simple Virtual Library System developed in Java that allows you to manage books, users, and loans through a console-based interface. It simulates real-world library operations like registering books and users, borrowing books, and returning them.
+This is a **console-based virtual library system** developed in Java. It allows you to manage a collection of books, register users, and handle book loans in an intuitive and structured way.
 
-🚀 Features
-📖 Book Management
+## 📌 Features
 
-Add new books
+- ✅ **Book Management**
+    - Add new books to the library
+    - Edit book details (title, author, ISBN, etc.)
+    - Delete books
+    - Search books by title or ISBN
+    - List all books
+    - Filter available books (not on loan)
 
-Edit book details
+- 🙋 **User Management**
+    - Add new users
+    - Edit user information
+    - Delete users
+    - Search users by name
+    - List all users
+    - Check a user’s current loans
 
-Delete books
+- 🔄 **Loan System**
+    - Allow users to loan available books
+    - Mark books as returned
+    - Prevent loaning books already on loan
+    - Track each loan’s details (book, user, date)
 
-Search books by title or ISBN
+---
 
-List all books
+## 🛠 Technologies Used
 
-👤 User Management
+- Java 17+
+- OOP (Object-Oriented Programming)
+- Collections (`ArrayList`)
+- Separation of concerns via `Service` classes
+- `Scanner` for input handling
+- `LocalDate` for loan dates
 
-Register new users
+---
 
-Edit user details
+## 🧠 Concepts Practiced
 
-Delete users
+This project reinforces key Java and software development concepts:
 
-Search users by name
+- Encapsulation and object composition
+- Stream filtering and lambda expressions
+- Modular code structure (single responsibility per method/class)
+- Defensive programming and input validation
+- Working with dates and dynamic lists
 
-List all users
+---
 
-Check user's loan history
+## 🚀 Future Improvements
 
-📗 Loan Management
+Although functional, the system can be improved in several areas:
 
-Loan a book to a specific user
+### 🧩 Architecture
 
-Mark a book as returned
+- **Data Persistence**
+    - Save books, users, and loans to file (e.g., JSON or CSV)
+    - Load from file when the program starts
+- **Serialization/Deserialization**
+    - Allow saving/loading the complete object state
 
-View which books are currently on loan
+### 📈 Features
 
-Prevent loaning books that are already on loan
+- **Loan Expiration**
+    - Add return deadlines and track overdue books
+- **Book Categories & Tags**
+    - Allow filtering by genre or tags
+- **User Loan History**
+    - Show previously returned books
 
-📁 Project Structure
-.
-├── Model/
-│   ├── Book.java
-│   ├── User.java
-│   └── Loan.java
-├── Service/
-│   ├── LibraryService.java
-│   ├── UserService.java
-│   └── LoanService.java
-├── Main.java
+### 🖥️ UI/UX
 
-🛠️ Technologies Used
+- **GUI**
+    - Add a graphical interface with JavaFX or Swing
+- **Validation**
+    - Improve field validation (e.g., valid email format)
 
-Java 17+
+### 🧪 Testing
 
-OOP Principles
+- Add unit tests for core logic using **JUnit**
+- Create mock data for testing purposes
 
-Collections (List)
+---
 
-Java Streams & Lambdas
+## ▶️ How to Run
 
-Scanner for user input
-
-LocalDate for managing dates
-
-🔮 Future Improvements
-
-✅ Data Persistence
-
-Save/load data using JSON or CSV files using libraries like Gson or Jackson.
-
-Automatically load state on app start and save on exit.
-
-⭐ Favorites or Book Ratings
-
-Allow users to rate or mark favorite books.
-
-📅 Loan Due Dates
-
-Add due dates to loans and highlight overdue books.
-
-📊 Statistics
-
-Most borrowed books
-
-Active users
-
-🔍 Advanced Search
-
-Filter by author, year, or genre.
-
-🧪 Unit Tests
-
-JUnit tests for service classes
-
-🧑‍💻 How to Run
-
-Clone the repository:
-
-git clone https://github.com/yourusername/virtual-library-system.git
-
-
-Open in your IDE (IntelliJ, Eclipse, etc.)
-
-Run Main.java
+1. **Compile all Java files**
+   ```bash
+   javac *.java
